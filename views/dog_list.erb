@@ -1,0 +1,4 @@
+<% @dogs.each do |dog| %>
+  <a href="/dogs/<%= dog.name %>/<%= dog.id %>"><h3><%= dog.name %></h3></a>
+  <img src="<%= dog.dog_img %>" alt="">
+<% end %>

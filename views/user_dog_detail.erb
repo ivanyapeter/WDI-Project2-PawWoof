@@ -1,0 +1,19 @@
+<!-- IMAGE WHEN READY!! -->
+
+<img src="<%= @dog_img %>" alt="">
+<h3><%= @name %></h3>
+<p><%= @age %></p>
+<p><%= @weight %></p>
+<p><%= @vetapr %></p>
+<% @breeds.each do |breed| %>
+  <p><%= breed.name %></p>
+<% end %>
+
+<form action="/dashboard/<%= @name %>/<%= @id %>/edit">
+  <button>Edit Details</button>
+</form>
+
+<form action="/dashboard/<%= @name %>/<%= @id %>/remove" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <button>Remove Dog</button>
+</form>

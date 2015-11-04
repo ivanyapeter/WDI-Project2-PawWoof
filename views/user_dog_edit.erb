@@ -1,0 +1,21 @@
+<form action="/dashboard/<%= @name %>/<%= @id %>/edit" method="post" enctype="multipart/form-data">
+  <input type="hidden" name="_method" value="put">
+  <label for="">Name</label>
+  <input type="text" name="name">
+  <label for="">Age</label>
+  <input type="text" name="age">
+  <label for="">Weight</label>
+  <input type="text" name="weight">
+  <label for="">Image</label>
+  <input type="file" name="dog_img">
+  <select name="breed_id" id="">
+    <% @breeds.each do |breed| %>
+      <option value="<%= breed.id %>">
+        <%= breed.name %>
+      </option>
+    <% end%>
+  </select>
+
+   <button>Edit dog detail</button>
+
+</form>
