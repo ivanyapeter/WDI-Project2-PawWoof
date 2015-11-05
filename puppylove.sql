@@ -29,6 +29,15 @@ CREATE TABLE breeds
   name VARCHAR(200)
 );
 
+CREATE TABLE messages
+(
+  id SERIAL4 PRIMARY KEY,
+  sender_id INTEGER,
+  recipient_id INTEGER,
+  dog_id INTEGER,
+  content VARCHAR(5000)
+);
+
 CREATE TABLE breed_types
 (
   id SERIAL4 PRIMARY KEY,

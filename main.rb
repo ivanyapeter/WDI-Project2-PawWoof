@@ -2,14 +2,13 @@ require 'pry'
 require 'pg'
 require 'sinatra'
 require 'sinatra/reloader'
-# require 'carrierwave/orm/activerecord'
 
 require_relative 'db_config'
 require_relative 'models/user'
 require_relative 'models/dog'
 require_relative 'models/breed'
 require_relative 'models/breed_type'
-# require_relative 'models/image_uploader'
+require_relative 'models/message'
 
 
 enable :sessions
@@ -45,7 +44,7 @@ get '/signup' do
 end
 
 post '/register' do
-  user = User.new(email: params[:email], password: params[:password], firstname: params[:firstname], lastname: params[:lastname], address: params[:address], phone_number: params[:phone_number], avatar: "Nothing for now")
+  user = User.new(email: params[:email], password: params[:password], firstname: params[:firstname], lastname: params[:lastname], address: params[:address], phone_number: params[:phone_number], avatar: params[:avatar])
   if user.save
     session[:user_id] = user.id
     redirect to '/'
@@ -90,13 +89,25 @@ end
 get '/dogs/:name/:id' do
 
   dog_details = Dog.find(params[:id])
+  @dog_id = dog_details.id
   @name = dog_details.name
   @age = dog_details.age
   @weight = dog_details.weight
   @vetapr = dog_details.vetapr
   @dog_img = dog_details.dog_img
+  @user_id = dog_details.user_id
 
   erb :dog_detail
+end
+
+post '/send_message/:id' do
+  dog = Dog.find(params[:id])
+  msg = Message.new(sender_id: current_user.id, recipient_id: dog.user.id, dog_id: params[:id], content: params[:content])
+  if msg.save
+    redirect to '/dogs'
+  else
+    redirect to '/dogs/:name/:id'
+  end
 end
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -109,13 +120,16 @@ end
 # Need to connect Dog with Breed Table
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 get '/dashboard' do
-
+  @user_dogs = Dog.where(user_id: current_user.id)
+  @breeds = Breed.all
+  @sent_messages = current_user.sent_messages
+  @received_messages = current_user.received_messages
   erb :user_detail
 end
 
 get '/dashboard/dogs' do
-  @user_dogs = Dog.where(user_id: current_user.id)
-  @breeds = Breed.all
+  # @user_dogs = Dog.where(user_id: current_user.id)
+  # @breeds = Breed.all
   erb :user_dog_list
 end
 
@@ -136,9 +150,9 @@ post '/dashboard/dogs' do
   dog = Dog.new(name: params[:name], age: params[:age], weight: params[:weight], vetapr: 'Approved', dog_img: params[:dog_img], user_id: current_user.id)
   dog.breeds << Breed.find_by(id: params[:breed_id])
   if dog.save
-    redirect to '/dashboard/dogs'
+    redirect to '/dashboard#dogs'
   else
-    redirect to '/dashboard/new'
+    redirect to '/dashboard#dogs'
   end
 end
 
@@ -160,16 +174,16 @@ put '/dashboard/:dog/:id/edit' do
   @dog_details.breeds = [Breed.find_by(id: params[:breed_id])]
   
   if @dog_details.save
-    redirect to '/dashboard/dogs'
+    redirect to '/dashboard#dogs'
   else
-    redirect to '/dashboard/new'
+    redirect to '/dashboard#dogs'
   end
 end
 
 delete '/dashboard/:dog/:id/remove' do
   dog = Dog.find(params[:id])
   if dog.destroy
-    redirect to '/dashboard/dogs'
+    redirect to '/dashboard#dogs'
   end
 end
 
@@ -246,6 +260,14 @@ end
   ## Delete a dog (DELETE)
   # dog = Dog.find(params[:id])
   # dog.destroy
+
+  #########################################
+  ## Show all User's Sent Message (GET)
+  # current_user.sent_messages
+
+  #########################################
+  ## Show all User's Recived Message (GET)
+  # current_user.received_messages
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

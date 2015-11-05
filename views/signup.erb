@@ -1,27 +1,37 @@
 <!-- Find a better form design -->
+<div class="col-xs-8 col-xs-offset-2">
+  <form action="/register" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputFirstname1">First Name</label>
+      <input type="text" name="firstname" class="form-control" id="exampleInputFirstname1" placeholder="First Name">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputLastname1">Last Name</label>
+      <input type="text" name="lastname" class="form-control" id="exampleInputLastname1" placeholder="Last Name">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputAddress1">Address</label>
+      <input type="text" name="address" class="form-control" id="exampleInputAddress1" placeholder="Address">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPhonenumber1">Phone Number</label>
+      <input type="text" name="phone_number" class="form-control" id="exampleInputPhonenumber1" placeholder="Phone Number">
+    </div>
 
-<form action="/register" method="post"> 
+    <div class="form-group">
+      <label for="exampleInputFile">Avatar</label>
+      <input type="file" name="avatar" id="exampleInputFile">
+      <!-- <p class="help-block">Let the other user</p> -->
+    </div>
 
-  <label for="">email</label>
-  <input type="email" name="email">
-
-  <label for="">Password</label>
-  <input type="password" name="password">
-
-  <label for="">First Name</label>
-  <input type="text" name="firstname">
-
-  <label for="">Last Name</label>
-  <input type="text" name="lastname">
-
-  <label for="">Address</label>
-  <input type="text" name="address"> 
-
-  <label for="">Phone Number</label>
-  <input type="text" name="phone_number">
-
-  <!-- IMAGE WHEN READY!! -->
-
-  <button>Register</button>
-
-</form>
+    <button type="submit" class="btn btn-default">Register</button>
+  </form>
+</div>
