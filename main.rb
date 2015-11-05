@@ -1,7 +1,7 @@
-require 'pry'
+# require 'pry'
 require 'pg'
 require 'sinatra'
-require 'sinatra/reloader'
+# require 'sinatra/reloader'
 
 require_relative 'db_config'
 require_relative 'models/user'
