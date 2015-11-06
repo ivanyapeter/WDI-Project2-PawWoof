@@ -1,103 +1,113 @@
 <!-- SIDEBAR! -->
-<ul class="nav sidebar-custom nav-pills nav-stacked col-xs-12 col-sm-3">
-  <li role="tab1" class="active"><a href="#tab1" data-toggle="tab">Home</a></li>
-  <li role="tab2"><a href="#dogs" data-toggle="tab">Dogs</a></li>
-  <li role="tab3"><a href="#messages" data-toggle="tab">Messages</a></li>
-</ul>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12">
 
-<div class="tab-content col-xs-12 col-sm-9">
-  <div class="tab-pane active in" id="tab1">
-      Tab 1 content
+      <div class="push-down">
+      <ul class="nav sidebar-custom nav-pills nav-stacked col-xs-12 col-sm-3">
+        <li role="tab1" class="active"><a href="#tab1" data-toggle="tab">Home</a></li>
+        <li role="tab2"><a href="#dogs" data-toggle="tab">Dogs</a></li>
+        <li role="tab3"><a href="#messages" data-toggle="tab">Messages</a></li>
+      </ul>
+
+      <div class="tab-content col-xs-12 col-sm-9">
+        <div class="tab-pane active in" id="tab1">
+            Tab 1 content
+        </div>
+
+        <div class="tab-pane fade" id="dogs">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">List of Dogs</h3>
+            </div>
+            <table class="table table-hover">
+              <% @user_dogs.each do |dog| %>
+                <tr>
+                  <th>
+                    <a href="/dashboard/<%= dog.name %>/<%= dog.id %>"><h3><%= dog.name %></h3></a>
+                  </th>
+                  <th>
+                    <form action="/dashboard/<%= dog.name %>/<%= dog.id %>/edit">
+                      <button class="btn btn-primary">Edit Details</button>
+                    </form>
+                  </th>
+                  <th>
+                    <form action="/dashboard/<%= dog.name %>/<%= dog.id %>/remove" method="post">
+                      <input type="hidden" name="_method" value="delete">
+                    <button class="btn btn-primary">Remove Dog</button>
+                    </form>
+                  </th>
+                </tr>
+              <% end %>
+            </table>
+            <div class="dropdown">
+              <button class="btn btn-primary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Add New Dog
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dLabel">
+                <form action="/dashboard/dogs" method="post" enctype="multipart/form-data">
+                  <label for="">Name</label>
+                  <input type="text" name="name">
+                  <label for="">Age</label>
+                  <input type="text" name="age">
+                  <label for="">Weight</label>
+                  <input type="text" name="weight">
+                  <label for="">Image</label>
+                  <input type="file" name="dog_img">
+                  <select name="breed_id" id="">
+                    <% @breeds.each do |breed| %>
+                      <option value="<%= breed.id %>">
+                        <%= breed.name %>
+                      </option>
+                    <% end%>
+                  </select>
+                  <button class="btn btn-primary">Add new dog</button>
+                </form> 
+              </ul>
+            </div>
+          </div>
+        </div> <!-- END OF DOG TAB -->
+
+
+        <div class="tab-pane fade" id="messages">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Sent Messages</h3>
+            </div>
+            <table class="table table-hover">
+              <% @sent_messages.each do |sent_message| %>
+                <tr>
+                  <th>
+                    <p><%= sent_message.content %></p>
+                  </th>
+                </tr>
+              <% end %>
+            </table>
+          </div>
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Received Messages</h3>
+            </div>
+            <table class="table table-hover">
+              <% @received_messages.each do |received_message| %>
+                <tr>
+                  <th>
+                    <p><%= received_message.content %></p>
+                  </th>
+                </tr>
+              <% end %>
+            </table>
+          </div>
+
+        </div> <!-- END OF MESSAGES TAB -->
+
+
+        </div> 
+      </div>  
+
+    </div>
   </div>
-
-  <div class="tab-pane fade" id="dogs">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">List of Dogs</h3>
-      </div>
-      <table class="table table-hover">
-        <% @user_dogs.each do |dog| %>
-          <tr>
-            <th>
-              <a href="/dashboard/<%= dog.name %>/<%= dog.id %>"><h3><%= dog.name %></h3></a>
-            </th>
-            <th>
-              <form action="/dashboard/<%= dog.name %>/<%= dog.id %>/edit">
-                <button>Edit Details</button>
-              </form>
-            </th>
-            <th>
-              <form action="/dashboard/<%= dog.name %>/<%= dog.id %>/remove" method="post">
-                <input type="hidden" name="_method" value="delete">
-              <button>Remove Dog</button>
-              </form>
-            </th>
-          </tr>
-        <% end %>
-      </table>
-      <div class="dropdownx`">
-        <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Add New Dog
-          <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dLabel">
-          <form action="/dashboard/dogs" method="post" enctype="multipart/form-data">
-            <label for="">Name</label>
-            <input type="text" name="name">
-            <label for="">Age</label>
-            <input type="text" name="age">
-            <label for="">Weight</label>
-            <input type="text" name="weight">
-            <label for="">Image</label>
-            <input type="file" name="dog_img">
-            <select name="breed_id" id="">
-              <% @breeds.each do |breed| %>
-                <option value="<%= breed.id %>">
-                  <%= breed.name %>
-                </option>
-              <% end%>
-            </select>
-            <button>Add new dog</button>
-          </form> 
-        </ul>
-      </div>
-    </div>
-  </div> <!-- END OF DOG TAB -->
-
-
-  <div class="tab-pane fade" id="messages">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Sent Messages</h3>
-      </div>
-      <table class="table table-hover">
-        <% @sent_messages.each do |sent_message| %>
-          <tr>
-            <th>
-              <a href="#"><h3><%= sent_message.content %></h3></a>
-            </th>
-          </tr>
-        <% end %>
-      </table>
-    </div>
-
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Received Messages</h3>
-      </div>
-      <table class="table table-hover">
-        <% @received_messages.each do |received_message| %>
-          <tr>
-            <th>
-              <a href="#"><h3><%= received_message.content %></h3></a>
-            </th>
-          </tr>
-        <% end %>
-      </table>
-    </div>
-
-  </div> <!-- END OF MESSAGES TAB -->
-
-
-</div> 
+</div>
 

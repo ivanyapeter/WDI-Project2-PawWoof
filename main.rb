@@ -47,7 +47,7 @@ post '/register' do
     session[:user_id] = user.id
     redirect to '/'
   else
-    redirect to '/signup'
+    redirect to '/'
   end
 end
 
@@ -62,7 +62,7 @@ post '/session' do
     session[:user_id] = user.id
     redirect to '/'
   else
-    redirect to '/signin'
+    redirect to '/'
   end
 
 end

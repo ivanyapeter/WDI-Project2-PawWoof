@@ -1,24 +1,34 @@
-<% @user_dogs.each do |dog| %>
-  <a href="/dashboard/<%= dog.name %>/<%= dog.id %>"><h3><%= dog.name %></h3></a>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      
+      <div class="push-down">
+      <% @user_dogs.each do |dog| %>
+        <a href="/dashboard/<%= dog.name %>/<%= dog.id %>"><h3><%= dog.name %></h3></a>
+      <% end %>
 
-<form action="/dashboard/dogs" method="post" enctype="multipart/form-data">
-  <label for="">Name</label>
-  <input type="text" name="name">
-  <label for="">Age</label>
-  <input type="text" name="age">
-  <label for="">Weight</label>
-  <input type="text" name="weight">
-  <label for="">Image</label>
-  <input type="file" name="dog_img">
-  <select name="breed_id" id="">
-    <% @breeds.each do |breed| %>
-      <option value="<%= breed.id %>">
-        <%= breed.name %>
-      </option>
-    <% end%>
-  </select>
+      <form action="/dashboard/dogs" method="post" enctype="multipart/form-data">
+        <label for="">Name</label>
+        <input type="text" name="name">
+        <label for="">Age</label>
+        <input type="text" name="age">
+        <label for="">Weight</label>
+        <input type="text" name="weight">
+        <label for="">Image</label>
+        <input type="file" name="dog_img">
+        <select name="breed_id" id="">
+          <% @breeds.each do |breed| %>
+            <option value="<%= breed.id %>">
+              <%= breed.name %>
+            </option>
+          <% end%>
+        </select>
 
-  <button>Add new dog</button>
+        <button class="btn btn-primary">Add new dog</button>
 
-</form>
+      </form>
+      </div>
+      
+    </div>
+  </div>
+</div>

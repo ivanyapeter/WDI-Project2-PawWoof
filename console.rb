@@ -1,4 +1,5 @@
 require 'active_record'
+# require 'pry'
 
 # show the sql in the terminal
 ActiveRecord::Base.logger = Logger.new(STDERR)

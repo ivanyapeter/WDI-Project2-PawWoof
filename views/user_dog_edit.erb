@@ -1,3 +1,4 @@
+<div class="push-down">
 <form action="/dashboard/<%= @name %>/<%= @id %>/edit" method="post" enctype="multipart/form-data">
   <input type="hidden" name="_method" value="put">
   <label for="">Name</label>
@@ -16,6 +17,7 @@
     <% end%>
   </select>
 
-   <button>Edit dog detail</button>
+   <button class="btn btn-primary">Edit dog detail</button>
 
 </form>
+</div>
