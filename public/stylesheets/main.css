@@ -62,8 +62,8 @@ hr {
   min-height: auto;
   text-align: center;
   /*color: ;*/
-  /*background: ;*/
-  /*background-size: cover;*/
+  background: url(../img/bg.jpg);
+  background-size: cover;
 }
 
 .header .header-content {
@@ -71,6 +71,8 @@ hr {
   width: 100%;
   padding: 100px 15px;
   text-align: center;
+  color: rgb(255, 255, 255);
+  text-shadow: 1px 0px 1px rgba(150, 150, 150, 1);
 }
 
 .header .header-content .header-content-inner h1 {
@@ -80,9 +82,37 @@ hr {
   font-weight: 700;
 }
 
+.header-content p {
+  color: rgb(255, 255, 255);
+  text-shadow: 1px 0px 1px rgba(150, 150, 150, 1);
+}
+
 /* DOG LIST PAGE */
 .dog-img {
   width: 100%;
+}
+
+/* DASHBOARD */
+
+.user-home {
+  padding: 25px;
+}
+
+.user-dog-list h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.user-dog-edit {
+  padding: 15px;
+}
+
+.add-dog-btn {
+  margin-bottom: 15px;
+}
+
+.form-user-detail {
+  padding: 15px;
 }
 
 /* FOOTER */
@@ -92,7 +122,11 @@ footer {
 }
 
 .copyright {
-  line-height: 40px;
+  /*line-height: 40px;*/
+}
+
+.vertical {
+  padding-top: 14px;
 }
 
 ul.social-buttons li a {

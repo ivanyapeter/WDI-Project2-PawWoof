@@ -1,23 +1,45 @@
 <div class="push-down">
-<form action="/dashboard/<%= @name %>/<%= @id %>/edit" method="post" enctype="multipart/form-data">
-  <input type="hidden" name="_method" value="put">
-  <label for="">Name</label>
-  <input type="text" name="name">
-  <label for="">Age</label>
-  <input type="text" name="age">
-  <label for="">Weight</label>
-  <input type="text" name="weight">
-  <label for="">Image</label>
-  <input type="file" name="dog_img">
-  <select name="breed_id" id="">
-    <% @breeds.each do |breed| %>
-      <option value="<%= breed.id %>">
-        <%= breed.name %>
-      </option>
-    <% end%>
-  </select>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+        <div class="panel panel-default">
+          <form class="user-dog-edit" action="/dashboard/<%= @name %>/<%= @id %>/edit" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="_method" value="put">
+            <div class="form-group">
+              <label for="">Name</label>
+              <input class="form-control" type="text" name="name" placeholder="<%= @name %>">
+            </div>
 
-   <button class="btn btn-primary">Edit dog detail</button>
 
-</form>
+            <div class="form-group">
+              <label for="">Age</label>
+              <input class="form-control" type="text" name="age" placeholder="<%= @age %>">
+            </div>
+
+            <div class="form-group">
+              <label for="">Weight</label>
+              <input class="form-control" type="text" name="weight" placeholder="<%= @weight %>">
+            </div>
+
+            <div class="form-group">
+              <label for="">Image</label>
+              <input type="file" name="dog_img">
+            </div>
+            <div class="form-group">
+              <select name="breed_id" id="">
+                <% @breeds.each do |breed| %>
+                  <option value="<%= breed.id %>">
+                    <%= breed.name %>
+                  </option>
+                <% end%>
+            </select>
+            </div>
+
+             <button class="btn btn-primary">Edit dog detail</button>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

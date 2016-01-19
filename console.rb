@@ -12,4 +12,4 @@ require_relative 'models/breed_type'
 require_relative 'models/message'
 
 
-binding.pry
+# binding.pry

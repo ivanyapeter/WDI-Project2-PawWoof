@@ -1,27 +1,31 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-6 text-center">
+<div class="push-down">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-offset-3 col-sm-6 text-center">
 
-    <div class="push-down">
-      <h3><%= @name %></h3>
-      <img src="<%= @dog_img %>" alt="" class="dog-img">
-      <p><%= @age %> years old</p>
-      <p><%= @weight %> kg</p>
-      <p><%= @vetapr %> by Vet</p>
+        <div class="panel panel-default">
+        <div class="panel-body">
+        <h3><%= @name %></h3>
+        <img src="<%= @dog_img %>" alt="" class="dog-img">
+        <p><%= @age %> years old</p>
+        <p><%= @weight %> kg</p>
+        <p><%= @vetapr %> by Vet</p>
 
-      <form action="/send_message/<%= @dog_id %>" method="post">
-        <!-- <div class="form-group">
-          <label for="exampleTitle1">Title</label>
-          <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Title">
-        </div> -->
-        <div class="form-group">
-          <label for="exampleMessage1">Message</label>
-          <input type="text" name="content" class="form-control" id="exampleMessage1" placeholder="Message">
+        <form action="/send_message/<%= @dog_id %>" method="post">
+          <!-- <div class="form-group">
+            <label for="exampleTitle1">Title</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Title">
+          </div> -->
+          <div class="form-group">
+            <label for="Message">Send <%= @name %> a message</label>
+            <input type="text" name="content" class="form-control" id="Message" placeholder="Message">
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-    </div>
+        </div>
 
+      </div>
     </div>
   </div>
 </div>

@@ -159,6 +159,9 @@ get '/dashboard/:dog/:id/edit' do
   @breeds = Breed.all
   @id = dog_details.id
   @name = dog_details.name
+  @age = dog_details.age
+  @weight = dog_details.weight
+  @dog_img = dog_details.dog_img
 
   erb :user_dog_edit
 end

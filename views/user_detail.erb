@@ -12,11 +12,14 @@
 
       <div class="tab-content col-xs-12 col-sm-9">
         <div class="tab-pane active in" id="tab1">
-            Tab 1 content
+          <div class="user-home panel panel-default">
+            <h3>Hi <%= current_user.firstname %></h3>
+            <p>You can check your dog list and messages in your dashboard.</p>
+          </div>
         </div>
 
         <div class="tab-pane fade" id="dogs">
-          <div class="panel panel-default">
+          <div class="user-dog-list panel panel-default">
             <div class="panel-heading">
               <h3 class="panel-title">List of Dogs</h3>
             </div>
@@ -40,33 +43,52 @@
                 </tr>
               <% end %>
             </table>
-            <div class="dropdown">
-              <button class="btn btn-primary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            
+          </div>
+
+          <div class="dropdown add-dog-btn">
+              <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Add New Dog
                 <span class="caret"></span>
               </button>
               <ul class="dropdown-menu" aria-labelledby="dLabel">
-                <form action="/dashboard/dogs" method="post" enctype="multipart/form-data">
-                  <label for="">Name</label>
-                  <input type="text" name="name">
-                  <label for="">Age</label>
-                  <input type="text" name="age">
-                  <label for="">Weight</label>
-                  <input type="text" name="weight">
-                  <label for="">Image</label>
-                  <input type="file" name="dog_img">
-                  <select name="breed_id" id="">
-                    <% @breeds.each do |breed| %>
-                      <option value="<%= breed.id %>">
-                        <%= breed.name %>
-                      </option>
-                    <% end%>
-                  </select>
+
+                <form class="form-user-detail" action="/dashboard/dogs" method="post" enctype="multipart/form-data">
+                  
+                  <div class="form-group">
+                    <label for="">Name</label>
+                    <input type="text" class="form-control" name="name">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="">Age</label>
+                    <input type="text" class="form-control" name="age">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="">Weight</label>
+                    <input type="text" class="form-control" name="weight">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="">Image</label>
+                    <input type="file" name="dog_img">
+                  </div>
+
+                  <div class="form-group">
+                    <select name="breed_id" id="">
+                      <% @breeds.each do |breed| %>
+                        <option value="<%= breed.id %>">
+                          <%= breed.name %>
+                        </option>
+                      <% end%>
+                    </select>
+                  </div>
                   <button class="btn btn-primary">Add new dog</button>
+
                 </form> 
               </ul>
             </div>
-          </div>
         </div> <!-- END OF DOG TAB -->
 
 

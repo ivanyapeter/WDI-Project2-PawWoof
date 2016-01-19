@@ -1,22 +1,18 @@
 <div class="push-down">
-    <div class="col-sm-4">
-      
-    </div>
-</div>
-
-<div class="container-fluid">
-  <div class="row">
-    <% @dogs.each do |dog| %>
-    <div class="col-sm-6 col-md-4">
-      <div class="thumbnail">
-        <div class="caption">
-          <a href="/dogs/<%= dog.name %>/<%= dog.id %>"><h3><%= dog.name %></h3></a>
-          <img src="<%= dog.dog_img %>" alt="" class="dog-img">
-          <p>...</p>
-          <p><a href="/dogs/<%= dog.name %>/<%= dog.id %>" class="btn btn-primary" role="button">Button</a>
+  <div class="container-fluid">
+    <div class="row">
+      <% @dogs.each do |dog| %>
+      <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+          <div class="caption">
+            <a href="/dogs/<%= dog.name %>/<%= dog.id %>"><h3><%= dog.name %></h3></a>
+            <img src="<%= dog.dog_img %>" alt="" class="dog-img">
+            <p>Age: <%= dog.age %></p>
+            <p><a href="/dogs/<%= dog.name %>/<%= dog.id %>" class="btn btn-primary" role="button">Details</a>
+          </div>
         </div>
       </div>
+      <% end %>
     </div>
-    <% end %>
   </div>
 </div>

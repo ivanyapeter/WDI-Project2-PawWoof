@@ -6,7 +6,7 @@ require 'carrierwave'
 ###  
 options = {
   adapter: 'postgresql',
-  database: 'puppylove'
+  database: 'pawwoof'
 }
 
 ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'] || options)
