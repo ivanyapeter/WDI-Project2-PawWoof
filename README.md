@@ -1,6 +1,13 @@
 #Project 2: Paw Woof
 [web](http://pawwoof.herokuapp.com/)
 [GitHub](https://github.com/ivanyapeter/WDI-Project2-PawWoof)
+
+A dummy account to play with the web app:
+email:    alex.gin@example.com
+password: password
+
+Enjoy!
+
 ## Table of Contents
   1. [Overview](#overview)
     + [Goals](#goals)
