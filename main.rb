@@ -8,7 +8,6 @@ require_relative 'models/breed'
 require_relative 'models/breed_type'
 require_relative 'models/message'
 
-
 enable :sessions
 
 helpers do
@@ -21,6 +20,8 @@ helpers do
     !!current_user
   end
 end
+
+ActiveRecord::Base.raise_in_transactional_callbacks = true
 
 after do
   ActiveRecord::Base.connection.close
